@@ -1,0 +1,255 @@
+* {
+  font-family: "MuseoModerno";
+  text-align: center;
+  overflow-x: hidden;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container
+{
+    width: 600px;
+    height: auto;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    transition: all 0.2s ease;
+    background-color: #FAF1F0; /* Màu nền của popup */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Hiệu ứng bóng đổ cho popup */
+    padding: 20px; 
+    overflow-x: hidden;
+}
+
+.head
+{
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #DB4133 solid 3px;
+
+}
+
+.material-symbols-outlined
+{
+    overflow-y: hidden;
+    cursor: pointer;
+}
+
+.logo-title
+{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    gap: 1.5rem;
+    color: #DB4133;
+}
+
+.logo{
+    width: 10%;
+    height: auto;
+    border-radius: 50%;
+    border: none;
+    object-fit:contain;
+}
+
+#hide-btn{
+    width: fit-content;
+    height: fit-content;
+    font-size: 30px;
+    overflow-y: hidden;
+}
+
+.body-c
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.preview
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.ele-preview
+{
+    width: 40%;
+    height: auto;
+    object-fit: contain;
+    border: none;
+    
+}
+
+.google-input
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.upcoming-events h2, .special-theme h2 {
+    color: #DB4133; /* Đổi màu chữ */
+    font-family: museomoderno; /* Đổi font chữ */
+    text-align: left; /* Căn chữ bên trái */
+}
+
+
+/*button*/
+
+.button-container{
+    text-align: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #DB4133;
+    width: 65%;
+    margin: auto;
+}
+.button-container .button{
+    background-color: #FFCACA;
+    font-weight:  bold;
+    border: none;
+    height: 35px;
+    width: 48%;
+    border-radius: 5px;
+    margin: 6px 0px 6px 0px;
+}
+
+/*Search*/
+.search{
+    text-align: right;
+}
+#myInput {
+    background-image: url('/img/magnifying-glass-solid.svg'); /* Add a search icon to input */
+    background-size: 18px; /* Adjust the size of the background image */
+    background-position: 10px 5px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 20%; /* Full-width */
+    font-size: 12px; /* Increase font-size */
+    padding: 5px 20px 5px 40px; /* Add some padding */
+    border: 1px solid #cf354a; /* Add a grey border */
+    margin: 12px; /* Add some space below the input */
+    background-color: #ec9999;
+    border-radius: 50px;
+    text-align: left;
+  }
+
+/*slider*/
+
+.slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 10px;
+    background: #ecb1b1;
+    outline: none;
+    border-radius: 5px;  
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+.slider:hover {
+    opacity: 1;
+}
+.slider-button{
+    font-weight: bold;
+    font-size: 50px;
+    padding: auto;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; 
+    background: #c7142c;
+    cursor: pointer;
+  }
+  
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #6ae452;
+    cursor: pointer;
+}
+
+/* change-size */
+  
+.change-size
+{
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    justify-content: center;
+    color: #ff6060;
+
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    margin: 20px;
+}
+
+.change-size input
+{
+    width: 25%;
+    color: #ff6060;
+}
+
+.change-size .decrement,
+.change-size .increment {
+    cursor: pointer; /* Đặt kiểu con trỏ thành ngón tay trỏ */
+}
+
+
+.doodle-list
+{
+    display: flex;
+    width: 600px;
+    gap: 13px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.ele {
+    width: 10rem;
+    height: 5rem;
+    object-fit: cover;
+    border: 3px #FAF1F0 solid;
+    border-radius: 3px
+}
+
+.ele:hover
+{
+    width: 10.3rem;
+    height: 5.1rem;
+    transition: all 0.23s ease;
+    cursor: pointer;
+}
+
+#customDoodle {
+    max-width: 100%;
+    display: none;
+}
+
+.title-doodle
+{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.check img
+{
+    border: 3px #ff6060 solid;
+}
+

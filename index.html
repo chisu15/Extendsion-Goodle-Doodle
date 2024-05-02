@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Extension Demo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Niramit&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="head">
+            <div class="logo-title">
+                <img src="./img/logo.png" alt="" class="logo">
+                <h1>VIETDOODLE GALLERY</h1>
+            </div>
+            <span class="material-symbols-outlined" id="hide-btn">
+                arrow_forward
+            </span>
+        </div>
+        <div class="body-c">
+            <div class="preview">
+                <div class="doodle-preview">
+                    <img class="ele-preview"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
+                        alt=""></img>
+                </div>
+                <div class="google-input">
+                    <div class="change-size">
+                        <h3 class="decrement">-</h3>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+                        <h3 class="increment">+</h3>
+                    </div>
+
+                    <div class="button-container">
+                        <button class="button" onclick="showContent('content1')" id="button1">Doodles</button>
+                        <button class="button" onclick="showContent('content2')" id="button2">More Doodles</button>
+                    </div>
+
+                    <div class="search">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                    </div>
+                </div>
+            </div>
+            <div class="content1">
+                <div class="upcoming-events">
+                    <h2>Upcoming Events</h2>
+                </div>
+                <div class="doodle-list">
+                </div>
+                <div class="special-theme">
+                    <h2>Special Theme</h2>
+                </div>
+            </div>
+            <div class="content2">
+                
+            </div>
+        </div>
+        <form action="">
+            <label for="timer">Set Time:</label>
+            <input type="number" name="" id="timer" placeholder="Seconds">
+            <button id="changeDoodle">Change Doodle</button>
+        </form>
+        <script src="changeTab.js"></script>
+        <script src="./popup.js"></script>
+        <script src="./size.js"></script>
+
+    </div>
+</body>
+
+</html>

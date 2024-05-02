@@ -1,0 +1,9 @@
+Fonts used in this design:
+
+Font: Barlow
+Author: Tribby
+Url: https://www.fontsquirrel.com/fonts/barlow
+
+Font: Courgette
+Author: Sorkin Type Co
+Url: https://www.fontsquirrel.com/fonts/courgette

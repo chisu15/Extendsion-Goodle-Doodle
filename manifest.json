@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Custom Doodle",
+  "version": "1.0",
+  "description": "Change Google Doodle",
+  "action": {
+    "default_popup": "index.html",
+    "icons": {
+      "16": "img/logo16.png",
+      "32": "img/logo32.png",
+      "48": "img/logo48.png",
+      "64": "img/logo64.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.google.com/*",
+        "https://*.google.com.vn/*"
+      ],
+      "js": [
+        "content.js",
+        "popup.js"
+      ]
+    }
+  ]
+}
