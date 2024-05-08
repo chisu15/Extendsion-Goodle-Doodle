@@ -117,6 +117,16 @@ body
     width: 65%;
     margin: auto;
 }
+#changeDoodle{
+    text-align: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #DB4133;
+    width: 65%;
+    margin: auto;
+    color: #fff;
+    margin-top: 10px;
+}
 .button-container .button{
     background-color: #FFCACA;
     font-weight:  bold;

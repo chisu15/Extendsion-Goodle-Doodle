@@ -3,6 +3,7 @@ callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/do
 
 callDoodle(".all-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
 
+showContent("content1");
 
 
 function selectFirstButton() {
@@ -23,17 +24,12 @@ function changeColor(button) {
   });
   button.style.backgroundColor = '#ecb1b1'; // Chọn màu đỏ cho nút được chọn
 }
-showContent("content1");
-
-function showContent(contentId) {
-  console.log(111111111111);
-  var content1 = document.querySelector('.content1');
-  var content2 = document.querySelector('.content2');
-  var button1 = document.getElementById('button1');
-  var button2 = document.getElementById('button2');
-
-  if (contentId === 'content1') {
-      console.log(content1);
+var content1 = document.querySelector('.content1');
+var content2 = document.querySelector('.content2');
+var button1 = document.getElementById('button1');
+var button2 = document.getElementById('button2');
+changeColor(button1);
+button1.addEventListener("click", function () {
       content1.style.visibility = 'visible';
       content2.style.visibility = 'hidden';
       content1.style.position = 'relative';
@@ -42,7 +38,10 @@ function showContent(contentId) {
       button1.classList.add('active');
       button2.classList.remove('active');
       changeColor(button1);
-  } else if (contentId === 'content2') {
+})
+button2.addEventListener("click", function () {
+  var content1 = document.querySelector('.content1');
+  var content2 = document.querySelector('.content2');
       content1.style.visibility = 'hidden';
       content2.style.visibility = 'visible';
       content2.style.position = 'relative';
@@ -51,7 +50,11 @@ function showContent(contentId) {
       button1.classList.remove('active');
       button2.classList.add('active');
       changeColor(button2);
-  }
+})
+function showContent(contentId) {
+  console.log(111111111111);
+  // var buttonDoodle = document.querySelector(".");
+
 }
 
 
@@ -134,6 +137,11 @@ function sendMessageToContentScript(message) {
 
 changeBtn.addEventListener("click", (event) => {
   console.log(timer.value);
+  let location = window.location.href;
+  if (location == 'chrome://new-tab-page/') {
+    location = "https://www.google.com/";
+    window.location.href = location
+  }
   if (timer.value) {
     setInterval(() => {
       sendMessageToContentScript(linkDoodle);

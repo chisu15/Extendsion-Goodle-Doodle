@@ -43,16 +43,14 @@
                         <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
                         <h3 class="increment">+</h3>
                     </div>
-
-                    <div class="button-container">
-                        <button class="button" onclick="showContent('content1')" id="button1">Doodles</button>
-                        <button class="button" onclick="showContent('content2')" id="button2">More Doodles</button>
-                    </div>
-
-                    <div class="search">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-                    </div>
                 </div>
+            </div>
+            <div class="button-container">
+                <button class="button doodleBtn" id="button1">Doodles</button>
+                <button class="button moreBtn" id="button2">More Doodles</button>
+            </div>
+            <div class="search">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
             </div>
             <div class="content1">
                 <div class="upcoming-events">
@@ -70,6 +68,7 @@
             <div class="content2">
                 
             </div>
+
         </div>
         <form action="">
             <label for="timer">Set Time:</label>
