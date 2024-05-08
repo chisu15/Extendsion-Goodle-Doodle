@@ -59,6 +59,9 @@ function showContent(contentId) {
 
 
 
+
+
+
 function callDoodle(classEle, api) {
 
 fetch(api)
@@ -82,7 +85,8 @@ doodleType.forEach((item) => {
 let linkDoodle = ""
 let doodleList = document.querySelectorAll(".doodle")
 let currentIndexDoodle = 0;
-let nextLinkDoodle = ""
+let nextLinkDoodle = "";
+
 const changeBtn = document.querySelector("#changeDoodle");
 const timer = document.querySelector("#timer")
 doodleList.forEach((item) => {
@@ -97,7 +101,31 @@ doodleList.forEach((item) => {
     let imgDoodle = item.querySelector("img");
     linkDoodle = imgDoodle.getAttribute("src");
     doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt=""></img>`
-    console.log(imgDoodle.outerHTML);
+    console.log("LINK DOODLE: "+item.innerHTML);
+
+      // const slider = document.getElementById("myRange");
+      // const decrementBtn = document.querySelector(".decrement");
+      // const incrementBtn = document.querySelector(".increment");
+      
+      // decrementBtn.addEventListener("click", function() {
+      //     // Giảm giá trị của slider khi click vào dấu "-"
+      //     slider.value = parseInt(slider.value) - 5;
+      //     console.log(parseInt(slider.value));
+      //     // Kích hoạt sự kiện input để cập nhật giá trị của slider
+      //     slider.dispatchEvent(new Event("input"));
+      //     link
+      //     doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt="" width="auto + ${slider.value}" height = "${92}"></img>`
+      // });
+  
+      // incrementBtn.addEventListener("click", function() {
+      //     // Tăng giá trị của slider khi click vào dấu "+"
+      //     slider.value = parseInt(slider.value) + 5;
+      //     // Kích hoạt sự kiện input để cập nhật giá trị của slider
+      //     slider.dispatchEvent(new Event("input"));
+      // });
+
+  
+
     doodleType.forEach((item) => {
       if (item.link == linkDoodle) {
         currentIndexDoodle = doodleType.indexOf(item)
@@ -125,15 +153,29 @@ function sendMessageToContentScript(message) {
     });
   });
 }
+const slider = document.getElementById("myRange");
+const decrementBtn = document.querySelector(".decrement");
+const incrementBtn = document.querySelector(".increment");
 
-// xoa tu cai tren   <p class="title-doodle">${item.name}</p>
+decrementBtn.addEventListener("click", function() {
+    // Giảm giá trị của slider khi click vào nút "Decrease"
+    slider.value = parseInt(slider.value) - 5;
+    // Kích hoạt sự kiện input để cập nhật giá trị của slider
+    slider.dispatchEvent(new Event("input"));
+});
 
-// setInterval(() => {
-//   sendMessageToContentScript(linkDoodle);
-//   currentIndexDoodle = (currentIndexDoodle + 1) % doodleType.length;
-//   nextLinkDoodle = doodleType[currentIndexDoodle].link;
-//   linkDoodle = nextLinkDoodle;
-// }, 1000)
+incrementBtn.addEventListener("click", function() {
+    // Tăng giá trị của slider khi click vào nút "Increase"
+    slider.value = parseInt(slider.value) + 5;
+    // Kích hoạt sự kiện input để cập nhật giá trị của slider
+    slider.dispatchEvent(new Event("input"));
+});
+
+slider.addEventListener("input", function() {
+    const value = parseInt(slider.value);
+    const doodleImg = document.querySelector(".ele-preview");
+    doodleImg.style.width = value + "%"; // Cập nhật chiều rộng của doodle dựa trên giá trị của slider
+});
 
 changeBtn.addEventListener("click", (event) => {
   console.log(timer.value);
@@ -155,38 +197,6 @@ changeBtn.addEventListener("click", (event) => {
   }
   event.preventDefault()
 })
-
-// changeBtn.addEventListener('click', async () => {
-//   await sendMessageToContentScript(linkDoodle);
-// });
-
-// changeBtn.addEventListener('click', async () => {
-//   // Kiểm tra giá trị timer hợp lệ
-//   if (timer.value) {
-//     const timerValue = parseInt(timer.value);
-//     // Lấy Doodle được chọn
-//     const selectedDoodle = document.querySelector(".doodle.check");
-//     if (!selectedDoodle) {
-//       // Xử lý trường hợp chưa chọn Doodle (ví dụ: hiển thị thông báo)
-//       return;
-//     }
-
-//     currentIndexDoodle = doodleType.indexOf(selectedDoodle);
-//     nextLinkDoodle = doodleType[(currentIndexDoodle + 1) % doodleType.length].link;
-//     await sendMessageToContentScript(selectedDoodle.querySelector("img").getAttribute("src"));
-//     const intervalId = setInterval(async () => {
-//       await sendMessageToContentScript(nextLinkDoodle);
-//       currentIndexDoodle = (currentIndexDoodle + 1) % doodleType.length;
-//       nextLinkDoodle = doodleType[currentIndexDoodle].link;
-//     }, timerValue * 1000);
-
-//     // Xóa interval khi click nút lần nữa
-//     changeBtn.addEventListener('click', () => clearInterval(intervalId));
-//   } else {
-//     await sendMessageToContentScript(linkDoodle);
-//     return;
-//   }
-// });
   })
 
 }
