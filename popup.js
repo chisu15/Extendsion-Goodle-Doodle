@@ -1,7 +1,7 @@
 
 callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/upcoming")
-callDoodle(".special-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/newest")
-callDoodle(".all-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
+
+callDoodle(".all-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
 
 
 

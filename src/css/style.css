@@ -99,7 +99,7 @@ body
     gap: 1px;
 }
 
-.upcoming-events h2, .special-theme h2 {
+.upcoming-events h2, .doodle-newest h2, .all-doodle h2{
     color: #DB4133; /* Đổi màu chữ */
     font-family: museomoderno; /* Đổi font chữ */
     /* font-family: "Niramit"; */
@@ -213,8 +213,7 @@ body
 }
 
 
-.doodle-list
-{
+.doodle-upcoming, .doodle-newest, .all-doodle{
     display: flex;
     width: 600px;
     gap: 13px;
