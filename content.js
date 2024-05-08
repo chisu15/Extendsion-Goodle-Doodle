@@ -22,7 +22,9 @@ function GetAndSetDoodle(type, logo, data, doodleLink, height, width) {
         if (request.link) {
             console.log(request.link)
             doodleLink = request.link
-            let defaultData = `<img class="lnXdpd" alt="Google" src="${doodleLink}" height="${height}" width="${width}" data-atf="1" data-frt="0" object-fit="cover">`
+            let defaultData = `
+                <img class="lnXdpd" alt="Google" src="${doodleLink}" height="${height}" width="${width}" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">
+            `
             // data = (type == 0) ? defaultData : `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="${height}" width="${width}" data-csiid="1" data-atf="1" object-fit="cover">`
             if (type == 0) {
                 data = defaultData;
@@ -50,6 +52,9 @@ const widthMain = "auto";
 
 let dataMain;
 let logoMain = document.querySelector('.rSk4se');
+let logoMain2 = document.querySelector(".k1zIA ");
+logoMain.style.height = "200px";
+logoMain2.style.height = "200px";
 CheckAndSetInStorage(0, logoMain);
 GetAndSetDoodle(0, logoMain, dataMain, doodleLink, heightMain, widthMain);
 
