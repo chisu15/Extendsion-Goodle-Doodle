@@ -1,4 +1,4 @@
-// const listDoodle = [{
+// const doodleType = [{
 //     name: "doodle-nut",
 //     link: "https://anonyviet.com/wp-content/uploads/2021/05/Game-Doodle-google.jpg"
 //   },
@@ -51,18 +51,22 @@
 //     link: "https://res.cloudinary.com/dqlelya6o/image/upload/08._24-03_nlmnny?_a=BAMABmRg0"
 //   }
 // ]
-let listDoodle;
-fetch("https://google-doodle-v2-v2.vercel.app/api/v1/doodle")
+callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/upcoming")
+callDoodle(".special-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/newest")
+callDoodle(".all-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
+function callDoodle(classEle, api) {
+
+fetch(api)
   .then(function (response) {
     return response.json();
   })
   .then(function (doodle) {
     // console.log(doodle)
-    listDoodle = doodle;
-    console.log(listDoodle);
-const doodleListEle = document.querySelector(".doodle-list")
+    doodleType = doodle;
+    console.log(doodleType);
+const doodleListEle = document.querySelector(`${classEle}`)
 const doodlePreview = document.querySelector(".doodle-preview")
-listDoodle.forEach((item) => {
+doodleType.forEach((item) => {
   let doodle = `<div class="doodle">
   <img class = "ele" src="${item.image}" alt="">
 
@@ -89,10 +93,10 @@ doodleList.forEach((item) => {
     linkDoodle = imgDoodle.getAttribute("src");
     doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt=""></img>`
     console.log(imgDoodle.outerHTML);
-    listDoodle.forEach((item) => {
+    doodleType.forEach((item) => {
       if (item.link == linkDoodle) {
-        currentIndexDoodle = listDoodle.indexOf(item)
-        nextLinkDoodle = listDoodle[(currentIndexDoodle + 1) % listDoodle.length].link;
+        currentIndexDoodle = doodleType.indexOf(item)
+        nextLinkDoodle = doodleType[(currentIndexDoodle + 1) % doodleType.length].link;
         console.log(currentIndexDoodle);
         console.log(nextLinkDoodle)
       }
@@ -121,8 +125,8 @@ function sendMessageToContentScript(message) {
 
 // setInterval(() => {
 //   sendMessageToContentScript(linkDoodle);
-//   currentIndexDoodle = (currentIndexDoodle + 1) % listDoodle.length;
-//   nextLinkDoodle = listDoodle[currentIndexDoodle].link;
+//   currentIndexDoodle = (currentIndexDoodle + 1) % doodleType.length;
+//   nextLinkDoodle = doodleType[currentIndexDoodle].link;
 //   linkDoodle = nextLinkDoodle;
 // }, 1000)
 
@@ -131,8 +135,8 @@ changeBtn.addEventListener("click", (event) => {
   if (timer.value) {
     setInterval(() => {
       sendMessageToContentScript(linkDoodle);
-      currentIndexDoodle = (currentIndexDoodle + 1) % listDoodle.length;
-      nextLinkDoodle = listDoodle[currentIndexDoodle].link;
+      currentIndexDoodle = (currentIndexDoodle + 1) % doodleType.length;
+      nextLinkDoodle = doodleType[currentIndexDoodle].link;
       linkDoodle = nextLinkDoodle;
       console.log(linkDoodle);
     }, timer.value * 1000)
@@ -157,13 +161,13 @@ changeBtn.addEventListener("click", (event) => {
 //       return;
 //     }
 
-//     currentIndexDoodle = listDoodle.indexOf(selectedDoodle);
-//     nextLinkDoodle = listDoodle[(currentIndexDoodle + 1) % listDoodle.length].link;
+//     currentIndexDoodle = doodleType.indexOf(selectedDoodle);
+//     nextLinkDoodle = doodleType[(currentIndexDoodle + 1) % doodleType.length].link;
 //     await sendMessageToContentScript(selectedDoodle.querySelector("img").getAttribute("src"));
 //     const intervalId = setInterval(async () => {
 //       await sendMessageToContentScript(nextLinkDoodle);
-//       currentIndexDoodle = (currentIndexDoodle + 1) % listDoodle.length;
-//       nextLinkDoodle = listDoodle[currentIndexDoodle].link;
+//       currentIndexDoodle = (currentIndexDoodle + 1) % doodleType.length;
+//       nextLinkDoodle = doodleType[currentIndexDoodle].link;
 //     }, timerValue * 1000);
 
 //     // Xóa interval khi click nút lần nữa
@@ -175,3 +179,4 @@ changeBtn.addEventListener("click", (event) => {
 // });
   })
 
+}

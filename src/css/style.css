@@ -1,5 +1,6 @@
 * {
   font-family: "MuseoModerno";
+  /* font-family: "Niramit"; */
   text-align: center;
   overflow-x: hidden;
 }
@@ -101,6 +102,7 @@ body
 .upcoming-events h2, .special-theme h2 {
     color: #DB4133; /* Đổi màu chữ */
     font-family: museomoderno; /* Đổi font chữ */
+    /* font-family: "Niramit"; */
     text-align: left; /* Căn chữ bên trái */
 }
 

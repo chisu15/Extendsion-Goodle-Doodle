@@ -5,12 +5,9 @@
   "description": "Change Google Doodle",
   "action": {
     "default_popup": "index.html",
-    "icons": {
-      "16": "img/logo16.png",
-      "32": "img/logo32.png",
-      "48": "img/logo48.png",
-      "64": "img/logo64.png"
-    }
+    "icons":  "img/logo.png"
+
+  
   },
   "permissions": [
     "activeTab",
@@ -26,7 +23,9 @@
       ],
       "js": [
         "content.js",
-        "popup.js"
+        "popup.js",
+        "changeTab.js",
+        "size.js"
       ]
     }
   ]
