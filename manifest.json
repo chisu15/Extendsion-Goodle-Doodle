@@ -5,7 +5,7 @@
   "description": "Change Google Doodle",
   "action": {
     "default_popup": "index.html",
-    "icons":  "img/logo.png"
+    "icons":  "./img/logo.png"
 
   
   },
@@ -13,7 +13,9 @@
     "activeTab",
     "storage",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "<all_urls>",
+    "menus"
   ],
   "content_scripts": [
     {

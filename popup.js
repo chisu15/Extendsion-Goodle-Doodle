@@ -1,59 +1,61 @@
-// const doodleType = [{
-//     name: "doodle-nut",
-//     link: "https://anonyviet.com/wp-content/uploads/2021/05/Game-Doodle-google.jpg"
-//   },
-//   {
-//     name: "doodle-drogoon",
-//     link: "https://www.google.com/logos/doodles/2023/celebrating-lake-xochimilco-6753651837110104.5-2xa.gif"
-//   },
-//   {
-//     name: "doodle-haloowee",
-//     link: "https://www.google.com/logos/doodles/2023/halloween-2023-6753651837109958-2xa.gif"
-//   },
-//   {
-//     name: "doodle-4",
-//     link: "https://www.cnet.com/a/img/resize/1df91c0ca563d765c8b92b13a94daa952b38fff8/hub/2016/09/14/53a4cb0b-f7ce-4934-9802-3e3d265ed495/doodle-4-google-logo.jpg?auto=webp&fit=crop&height=675&width=1200"
-//   },
-//   {
-//     name: "doodle-edu",
-//     link: "https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2020/4/14/798210/Google-Doodle-4-9-20.jpg"
-//   },
-//   {
-//     name: "asdasd",
-//     link: "https://images.hindustantimes.com/img/2022/02/14/1600x900/google_doodle_1644804981291_1644804985296.PNG"
-//   },
-//   {
-//     name: "Women",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/01._01-01_pgmdhx?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "VNC-6",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/02._14-02_vpuvyo?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "VNC-5",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/03._03-02_fumljy?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "HCM",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/04._23-2_nu4mya?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "Love",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/05._27-02_txdyf9?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "30-04",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/06._28-02_p15rby?_a=BAMABmRg0"
-//   },
-//   {
-//     name: "24-03",
-//     link: "https://res.cloudinary.com/dqlelya6o/image/upload/08._24-03_nlmnny?_a=BAMABmRg0"
-//   }
-// ]
+
 callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/upcoming")
 callDoodle(".special-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/newest")
 callDoodle(".all-theme", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
+
+
+
+function selectFirstButton() {
+  var firstButton = document.querySelector('#button1');
+  if (firstButton) {
+      changeColor(firstButton);
+  }
+}
+function changeColor(button) {
+  var buttons = document.querySelectorAll('.button');
+  buttons.forEach(function (btn) {
+      btn.style.backgroundColor = 'transparent';
+      if (btn === button) {
+          btn.style.color = '#000'; // Màu chữ trắng cho nút được chọn
+      } else {
+          btn.style.color = '#fff'; // Màu chữ đen cho các nút còn lại
+      }
+  });
+  button.style.backgroundColor = '#ecb1b1'; // Chọn màu đỏ cho nút được chọn
+}
+showContent("content1");
+
+function showContent(contentId) {
+  console.log(111111111111);
+  var content1 = document.querySelector('.content1');
+  var content2 = document.querySelector('.content2');
+  var button1 = document.getElementById('button1');
+  var button2 = document.getElementById('button2');
+
+  if (contentId === 'content1') {
+      console.log(content1);
+      content1.style.visibility = 'visible';
+      content2.style.visibility = 'hidden';
+      content1.style.position = 'relative';
+      content2.style.position = 'absolute';
+      content2.style.top = '0';
+      button1.classList.add('active');
+      button2.classList.remove('active');
+      changeColor(button1);
+  } else if (contentId === 'content2') {
+      content1.style.visibility = 'hidden';
+      content2.style.visibility = 'visible';
+      content2.style.position = 'relative';
+      content1.style.position = 'absolute';
+      content1.style.top = '0';
+      button1.classList.remove('active');
+      button2.classList.add('active');
+      changeColor(button2);
+  }
+}
+
+
+
 function callDoodle(classEle, api) {
 
 fetch(api)
