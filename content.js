@@ -3,6 +3,8 @@ let heightMain;
 let widthMain;
 let heightSearch;
 let widthSearch;
+let href
+
 function CheckAndSetInStorage(type, logo) {
 
     if (type == 0) {
@@ -25,12 +27,17 @@ function GetAndSetDoodle(type, logo, data, doodleLink) {
         if (request.link) {
             doodleLink = request.link;
             heightMain = request.height;
-            console.log(request.link + "     "+ heightMain)
+            href = request.href;
+            if (!heightMain) {
+                heightMain = 200
+            }
+
+            console.log(request.link + "     " + heightMain + "     " + href)
             let defaultData = `
                 <img class="lnXdpd" alt="Google" src="${doodleLink}" height="${heightMain}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">
             `
             // data = (type == 0) ? defaultData : `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="${height}" width="${width}" data-csiid="1" data-atf="1" object-fit="cover">`
-             
+
             if (type == 0) {
                 data = defaultData;
                 chrome.storage.local.set({
@@ -71,6 +78,6 @@ let logoSearch = document.querySelector("#logo");
 CheckAndSetInStorage(1, logoSearch);
 GetAndSetDoodle(1, logoSearch, dataSearch, doodleLink);
 
-chrome.tabs.onCreate.addListener(()=>{
-    
+chrome.tabs.onCreate.addListener(() => {
+
 })
