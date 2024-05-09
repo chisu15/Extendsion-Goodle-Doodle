@@ -137,36 +137,21 @@ doodleList.forEach((item) => {
   })
 })
 
-function sendMessageToContentScript(message) {
-  return new Promise((resolve) => {
-    chrome.tabs.query({
-      active: true,
-      currentWindow: true
-    }, (tabs) => {
-      console.log("Tabs:", tabs);
-      const activeTab = tabs[0];
-      chrome.tabs.sendMessage(activeTab.id, {
-        link: message
-      }, () => {
-        resolve();
-      });
-    });
-  });
-}
+
 const slider = document.getElementById("myRange");
 const decrementBtn = document.querySelector(".decrement");
 const incrementBtn = document.querySelector(".increment");
 
 decrementBtn.addEventListener("click", function() {
     // Giảm giá trị của slider khi click vào nút "Decrease"
-    slider.value = parseInt(slider.value) - 5;
+    slider.value = parseInt(slider.value) - 1;
     // Kích hoạt sự kiện input để cập nhật giá trị của slider
     slider.dispatchEvent(new Event("input"));
 });
 
 incrementBtn.addEventListener("click", function() {
     // Tăng giá trị của slider khi click vào nút "Increase"
-    slider.value = parseInt(slider.value) + 5;
+    slider.value = parseInt(slider.value) + 1;
     // Kích hoạt sự kiện input để cập nhật giá trị của slider
     slider.dispatchEvent(new Event("input"));
 });
@@ -175,15 +160,34 @@ slider.addEventListener("input", function() {
     const value = parseInt(slider.value);
     const doodleImg = document.querySelector(".ele-preview");
     doodleImg.style.width = value + "%"; // Cập nhật chiều rộng của doodle dựa trên giá trị của slider
+    console.log(doodleImg.style.width);
 });
+
+function sendMessageToContentScript(message, height) {
+  return new Promise((resolve) => {
+    chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    }, (tabs) => {
+      console.log("Tabs:", tabs);
+      const activeTab = tabs[0];
+      chrome.tabs.sendMessage(activeTab.id, {
+        link: message,
+        height: height
+      }, () => {
+        resolve();
+      });
+    });
+  });
+}
 
 changeBtn.addEventListener("click", (event) => {
   console.log(timer.value);
-  let location = window.location.href;
-  if (location == 'chrome://new-tab-page/') {
-    location = "https://www.google.com/";
-    window.location.href = location
-  }
+  // let location = window.location.href;
+  // if (location == 'chrome://new-tab-page/') {
+  //   location = "https://www.google.com/";
+  //   window.location.href = location
+  // }
   if (timer.value) {
     setInterval(() => {
       sendMessageToContentScript(linkDoodle);
@@ -193,7 +197,10 @@ changeBtn.addEventListener("click", (event) => {
       console.log(linkDoodle);
     }, timer.value * 1000)
   } else {
-    sendMessageToContentScript(linkDoodle);
+    let doodle = document.querySelector(".ele-preview");
+    let height = doodle.style.width;
+    console.log(linkDoodle + "            " + height);
+    sendMessageToContentScript(linkDoodle, height);
   }
   event.preventDefault()
 })

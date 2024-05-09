@@ -86,7 +86,7 @@ body
 .ele-preview
 {
     width: 40%;
-    height: auto;
+    height: 40%;
     object-fit: contain;
     border: none;
     

@@ -1,5 +1,8 @@
 let doodleLink;
-
+let heightMain;
+let widthMain;
+let heightSearch;
+let widthSearch;
 function CheckAndSetInStorage(type, logo) {
 
     if (type == 0) {
@@ -17,22 +20,24 @@ function CheckAndSetInStorage(type, logo) {
     }
 }
 
-function GetAndSetDoodle(type, logo, data, doodleLink, height, width) {
+function GetAndSetDoodle(type, logo, data, doodleLink) {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (request.link) {
-            console.log(request.link)
-            doodleLink = request.link
+            doodleLink = request.link;
+            heightMain = request.height;
+            console.log(request.link + "     "+ heightMain)
             let defaultData = `
-                <img class="lnXdpd" alt="Google" src="${doodleLink}" height="${height}" width="${width}" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">
+                <img class="lnXdpd" alt="Google" src="${doodleLink}" height="${heightMain}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">
             `
             // data = (type == 0) ? defaultData : `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="${height}" width="${width}" data-csiid="1" data-atf="1" object-fit="cover">`
+             
             if (type == 0) {
                 data = defaultData;
                 chrome.storage.local.set({
                     doodleMain: `${data}`
                 })
             } else {
-                data = `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="${height}" width="${width}" data-csiid="1" data-atf="1" object-fit="cover">`
+                data = `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="30px" width="92px" data-csiid="1" data-atf="1" object-fit="cover">`
                 chrome.storage.local.set({
                     doodleExtra: `${data}`
                 })
@@ -46,9 +51,8 @@ function GetAndSetDoodle(type, logo, data, doodleLink, height, width) {
     });
 }
 
-
-const heightMain = 200;
-const widthMain = "auto";
+heightMain = 200;
+widthMain = "auto";
 
 let dataMain;
 let logoMain = document.querySelector('.rSk4se');
@@ -56,16 +60,16 @@ let logoMain2 = document.querySelector(".k1zIA ");
 logoMain.style.height = "200px";
 logoMain2.style.height = "200px";
 CheckAndSetInStorage(0, logoMain);
-GetAndSetDoodle(0, logoMain, dataMain, doodleLink, heightMain, widthMain);
+GetAndSetDoodle(0, logoMain, dataMain, doodleLink);
 
 
-const heightSearch = 30;
-const widthSearch = 92;
+heightSearch = 30;
+widthSearch = 92;
 let dataSearch;
 let logoSearch = document.querySelector("#logo");
 
 CheckAndSetInStorage(1, logoSearch);
-GetAndSetDoodle(1, logoSearch, dataSearch, doodleLink, heightSearch, widthSearch);
+GetAndSetDoodle(1, logoSearch, dataSearch, doodleLink);
 
 chrome.tabs.onCreate.addListener(()=>{
     
