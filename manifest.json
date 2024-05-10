@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Custom Doodle",
+  "name": "VietDoodle Gallery",
   "version": "1.0",
   "description": "Change Google Doodle",
   "action": {

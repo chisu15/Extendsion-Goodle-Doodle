@@ -1,15 +1,32 @@
-callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/upcoming")
+document.addEventListener("DOMContentLoaded", function () {
+  callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/upcoming")
 
-callDoodle(".all-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
+  callDoodle(".all-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
+  scrollLeftList(".prevYour", ".your-doodle")
+  scrollRightList(".nextYour", ".your-doodle")
+  scrollLeftList(".prevUpcome", ".doodle-upcoming")
+  scrollRightList(".nextUpcome", ".doodle-upcoming")
+  scrollLeftList(".prevAll", ".all-doodle")
+  scrollRightList(".nextAll", ".all-doodle")
 
-showContent("content1");
+});
 
-
-function selectFirstButton() {
-  var firstButton = document.querySelector('#button1');
-  if (firstButton) {
-    changeColor(firstButton);
-  }
+function scrollLeftList(classBtn, classList) {
+  const prevButton = document.querySelector(`${classBtn}`);
+  prevButton.addEventListener('click', function () {
+    const doodleContainer = document.querySelector(`${classList}`);
+    const scrollStep = 100;
+    doodleContainer.scrollLeft -= scrollStep;
+    console.log(1111111111111111111111111111111111);
+  });
+}
+function scrollRightList(classBtn, classList) {
+  const nextButton = document.querySelector(`${classBtn}`);
+  nextButton.addEventListener('click', function () {
+    const doodleContainer = document.querySelector(`${classList}`);
+    const scrollStep = 100;
+    doodleContainer.scrollLeft += scrollStep;
+  });
 }
 
 function changeColor(button) {
@@ -24,17 +41,15 @@ function changeColor(button) {
   });
   button.style.backgroundColor = '#ecb1b1'; // Chọn màu đỏ cho nút được chọn
 }
+
 var content1 = document.querySelector('.content1');
 var content2 = document.querySelector('.content2');
 var button1 = document.getElementById('button1');
 var button2 = document.getElementById('button2');
 changeColor(button1);
 button1.addEventListener("click", function () {
-  content1.style.visibility = 'visible';
-  content2.style.visibility = 'hidden';
-  content1.style.position = 'relative';
-  content2.style.position = 'absolute';
-  content2.style.top = '0';
+  content2.style.display = 'none';
+  content1.style.display = 'block';
   button1.classList.add('active');
   button2.classList.remove('active');
   changeColor(button1);
@@ -42,25 +57,12 @@ button1.addEventListener("click", function () {
 button2.addEventListener("click", function () {
   var content1 = document.querySelector('.content1');
   var content2 = document.querySelector('.content2');
-  content1.style.visibility = 'hidden';
-  content2.style.visibility = 'visible';
-  content2.style.position = 'relative';
-  content1.style.position = 'absolute';
-  content1.style.top = '0';
+  content1.style.display = 'none';
+  content2.style.display = 'block';
   button1.classList.remove('active');
   button2.classList.add('active');
   changeColor(button2);
 })
-
-function showContent(contentId) {
-  console.log(111111111111);
-  // var buttonDoodle = document.querySelector(".");
-
-}
-
-
-
-
 
 
 function callDoodle(classEle, api) {
@@ -70,16 +72,17 @@ function callDoodle(classEle, api) {
       return response.json();
     })
     .then(function (doodle) {
+
       // console.log(doodle)
       doodleType = doodle;
-      console.log(doodleType);
       const doodleListEle = document.querySelector(`${classEle}`)
       const doodlePreview = document.querySelector(".doodle-preview")
+
       doodleType.forEach((item) => {
         let doodle = `<div class="doodle">
-  <img class = "ele" src="${item.image}" alt="">
-
-  </div>`
+        <img class = "ele" src="${item.image}" alt="" loading="lazy">
+        
+        </div>`
         doodleListEle.innerHTML += doodle;
       })
 
@@ -103,28 +106,6 @@ function callDoodle(classEle, api) {
           linkDoodle = imgDoodle.getAttribute("src");
           doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt=""></img>`
           console.log("LINK DOODLE: " + item.innerHTML);
-
-          // const slider = document.getElementById("myRange");
-          // const decrementBtn = document.querySelector(".decrement");
-          // const incrementBtn = document.querySelector(".increment");
-
-          // decrementBtn.addEventListener("click", function() {
-          //     // Giảm giá trị của slider khi click vào dấu "-"
-          //     slider.value = parseInt(slider.value) - 5;
-          //     console.log(parseInt(slider.value));
-          //     // Kích hoạt sự kiện input để cập nhật giá trị của slider
-          //     slider.dispatchEvent(new Event("input"));
-          //     link
-          //     doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt="" width="auto + ${slider.value}" height = "${92}"></img>`
-          // });
-
-          // incrementBtn.addEventListener("click", function() {
-          //     // Tăng giá trị của slider khi click vào dấu "+"
-          //     slider.value = parseInt(slider.value) + 5;
-          //     // Kích hoạt sự kiện input để cập nhật giá trị của slider
-          //     slider.dispatchEvent(new Event("input"));
-          // });
-
 
 
           doodleType.forEach((item) => {

@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+  }
 * {
   font-family: "MuseoModerno";
   /* font-family: "Niramit"; */
@@ -98,15 +101,54 @@ body
     flex-direction: column;
     gap: 1px;
 }
-
+.search-bar
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#search-icon
+{
+    position:absolute;
+    left: 21%;
+    color: #a0a0a0;
+    /* z-index:  999; */
+}
+#search-static
+{
+    width: 60%;
+    height: 2rem;
+    border: #ccc solid 1px;
+    border-radius: 25px;
+}
 .upcoming-events h2, .doodle-newest h2, .all-doodle h2{
     color: #DB4133; /* Đổi màu chữ */
     font-family: museomoderno; /* Đổi font chữ */
     /* font-family: "Niramit"; */
     text-align: left; /* Căn chữ bên trái */
 }
-
-
+.box-doodle
+{
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    height: 165px;
+    align-items: center;
+    /* overflow-x: scroll; */
+    white-space: nowrap;
+    gap: 8px;
+}
+.btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(217, 111, 111);
+    transition: 0.2s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
 /*button*/
 
 .button-container{
@@ -224,30 +266,48 @@ body
 
 
 .doodle-upcoming, .doodle-newest, .all-doodle{
-    display: flex;
-    width: 600px;
+    display: inline-block;
+    width: 570px;
+    height: 5.5rem;
     gap: 13px;
     justify-content: center;
-    flex-wrap: wrap;
-    align-self: center;
+    /* flex-wrap: nowrap; */
+    /* overflow-x: hidden; */
+    /* overflow-x:scroll; */
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
 }
 
 .ele {
+    display: flex;
     width: 10rem;
     height: 5rem;
     object-fit: cover;
     border: 3px #FAF1F0 solid;
-    border-radius: 3px
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
-
 .ele:hover
 {
-    width: 10.3rem;
-    height: 5.1rem;
-    transition: all 0.23s ease;
     cursor: pointer;
+    object-fit: contain;
+    box-shadow: #c25757 2px 6px 3px;
 }
-
+.doodle{
+    display: inline-flex;
+    overflow: hidden;
+    margin-right: 10px;
+    /* gap: 10px; */
+    transition: all 0.3s ease;
+}
+.doodle:hover
+{
+    cursor: pointer;
+    /* object-fit: contain; */
+    box-shadow: #c25757 2px 6px 0px;
+}
 #customDoodle {
     max-width: 100%;
     display: none;
