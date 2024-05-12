@@ -31,6 +31,10 @@
             </span>
         </div>
         <div class="body-c">
+            <div class="toggle-default-change">
+                <button id="offDefault">Off</button>
+                <button id="onDefault">On</button>
+            </div>
             <div class="preview">
                 <div class="doodle-preview">
                     <img class="ele-preview"
@@ -47,12 +51,10 @@
             </div>
             <div class="button-container">
                 <button class="button doodleBtn" id="button1">Doodles</button>
-                <button class="button moreBtn" id="button2">More Doodles</button>
-            </div>
-            <div class="search">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <button class="button moreBtn" id="button2">Upload Doodles</button>
             </div>
             <div class="content1">
+                <button id="btn-random">⇎ Random Doodle ⇎</button>
                 <!-- YOUR DOODLE -->
                 <div class="upcoming-events">
                     <h2>Your Doodle</h2>
@@ -84,17 +86,25 @@
                     </div>
                     <a class="btn nextAll">&#10095;</a>
                 </div>
+                <form action="" id="form-change">
+                    <div>
+                        <label for="timer">Set Date:</label>
+                        <input type="datetime-local" id="timer" min="2021-01-01T00:00" max="2099-12-31T23:59">
+                    </div>
+                    <button id="changeDoodle">Change Doodle</button>
+                </form>
             </div>
             <div class="content2">
-
+                <div class="upload-box">
+                    <h1>Upload your Doodle</h1>
+                </div>
+                <form action="" id="form-upload">
+                    <input id="doodle-input" type="file">
+                    <button id="uploadDoodle">Upload Doodle</button>
+                </form>
             </div>
 
         </div>
-        <form action="">
-            <label for="timer">Set Time:</label>
-            <input type="number" name="" id="timer" placeholder="Seconds">
-            <button id="changeDoodle">Change Doodle</button>
-        </form>
         <!-- <script src="changeTab.js"></script> -->
         <script src="./popup.js"></script>
         <script src="./size.js"></script>

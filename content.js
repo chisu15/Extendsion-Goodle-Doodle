@@ -1,9 +1,12 @@
+
+
 let doodleLink;
 let heightMain;
 let widthMain;
 let heightSearch;
 let widthSearch;
-let href
+let href;
+let buffer;
 
 function CheckAndSetInStorage(type, logo) {
 
@@ -13,14 +16,35 @@ function CheckAndSetInStorage(type, logo) {
             logo.innerHTML = savedDoodle;
             doodleLink = savedDoodle;
         });
-    } else {
+    } else if (type == 1) {
         chrome.storage.local.get("doodleExtra", (res) => {
             const savedDoodle = res.doodleExtra;
             logo.innerHTML = savedDoodle;
             doodleLink = savedDoodle;
         });
     }
+    if (type == "upload") {
+        chrome.storage.local.get("doodleUpload", (res) => {
+            const savedDoodle = res.doodleUpload;
+            // logo.innerHTML = savedDoodle;
+            doodleLink = savedDoodle;
+        });
+    }
 }
+// function SaveDoodleUser(){
+//     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//         if (request.buffer) {
+//             buffer = buffer.push(request.buffer);
+//             console.log(buffer);
+//             chrome.storage.local.set({
+//                 doodleUpload: `${buffer}`
+//             })
+//         } else {
+//             console.log("dont have any image");
+//             console.log(request.buffer)
+//         }
+//     });
+// }
 
 function GetAndSetDoodle(type, logo, data, doodleLink) {
     chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -77,7 +101,3 @@ let logoSearch = document.querySelector("#logo");
 
 CheckAndSetInStorage(1, logoSearch);
 GetAndSetDoodle(1, logoSearch, dataSearch, doodleLink);
-
-chrome.tabs.onCreate.addListener(() => {
-
-})

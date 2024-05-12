@@ -3,31 +3,26 @@
   "name": "VietDoodle Gallery",
   "version": "1.0",
   "description": "Change Google Doodle",
-  "action": {
-    "default_popup": "index.html",
-    "icons":  "./img/logo.png"
-
-  
-  },
   "permissions": [
-    "activeTab",
+    "alarms",
     "storage",
     "tabs",
-    "webNavigation",
     "<all_urls>",
-    "menus"
+    "nativeMessaging"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content.js",
-        "popup.js",
-        "changeTab.js",
-        "size.js"
-      ]
+      "matches": ["<all_urls>"],
+      "js": ["content.js", "popup.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "48": "img/logo.png"
+  }
 }
