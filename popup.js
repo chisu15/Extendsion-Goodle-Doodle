@@ -255,7 +255,7 @@ document.getElementById('changeDoodle').addEventListener('click', function(event
     }
   } else {
     // Nếu không có thời gian được chọn, thay đổi Doodle ngay lập tức
-    sendMessageToContentScript(link , height, bufferDoodleUser);
+    sendMessageToContentScript(link , height);
   }
 });
 

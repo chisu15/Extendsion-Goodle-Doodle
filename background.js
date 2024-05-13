@@ -4,18 +4,21 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Function to set the alarm for changing the Doodle
 function setDoodleAlarm(link, height, when) {
-    console.log("setDoodleAlarm get data: ", link, height, when);
+    console.log("setDoodleAlarm set data: ", link, height, when);
+    let defaultData = `<img class="lnXdpd" alt="Google" src="${link}" height="${height}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">`;
+    let dataExtra = `<img class="jfN4p" src="${link}" style="background:none" alt="Google" height="30px" width="92px" data-csiid="1" data-atf="1" object-fit="cover">`;
+
     chrome.storage.local.set({
-        link: link,
-        height: height,
+        doodleMain: `${defaultData}`
+    })
+    chrome.storage.local.set({
+        doodleExtra: `${dataExtra}`
+    })
+    chrome.alarms.create('changeDoodle', {
         when: when
-    }, function () {
-        chrome.alarms.create('changeDoodle', {
-            when: when
-        });
-        console.log('Alarm set for changing Doodle at:', new Date(when).toLocaleString());
-        countdownTimer(when)
     });
+    console.log('Alarm set for changing Doodle at:', new Date(when).toLocaleString());
+    countdownTimer(when)
 }
 // Listener for the alarm to change the Doodle
 chrome.alarms.onAlarm.addListener(function (alarm) {
@@ -72,21 +75,41 @@ function updateDoodleFromStorage() {
     });
 }
 
-chrome.windows.onCreated.addListener(function () {
-    console.log("A new browser window was created.");
-    chrome.storage.local.get(['link', 'height', 'when'], function (data) {
-        console.log("On Create get data from local: ", data);
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            if (tabs.length > 0) {
-                chrome.tabs.sendMessage(tabs[0].id, {
-                    link: data.link,
-                    height: data.height
-                })
-            }
+function CheckAndSetInStorage(type, logo) {
+    console.log("CheckAndSetInStorage called");
+    if (type == 0) {
+        chrome.storage.local.get("doodleMain", (res) => {
+            const savedDoodle = res.doodleMain;
+            logo.innerHTML = savedDoodle;
+            doodleLink = savedDoodle;
         });
-        console.log("Message sent from background");
-    });
-});
+    } else if (type == 1) {
+        chrome.storage.local.get("doodleExtra", (res) => {
+            const savedDoodle = res.doodleExtra;
+            logo.innerHTML = savedDoodle;
+            doodleLink = savedDoodle;
+        });
+    }
+    if (type == "upload") {
+        chrome.storage.local.get("doodleUpload", (res) => {
+            const savedDoodle = res.doodleUpload;
+            // logo.innerHTML = savedDoodle;
+            doodleLink = savedDoodle;
+        });
+    }
+}
+
+// chrome.windows.onCreated.addListener(function () {
+//     console.log("A new browser window was created.");
+//     chrome.storage.local.get(['link', 'height', 'when'], function (data) {
+//         console.log("On Create get data from local: ", data);
+//         let logoMain = document.querySelector('.rSk4se');
+//         let logoExtra = document.querySelector("#logo");
+//         CheckAndSetInStorage(0, logoMain);
+//         CheckAndSetInStorage(1, logoExtra);
+//         console.log("Message sent from background");
+//     });
+// });
 
 // This function restores alarms and checks if it needs to fire immediately upon browser startup
 chrome.runtime.onStartup.addListener(function () {
