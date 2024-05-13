@@ -84,6 +84,7 @@ body {
     height: 40%;
     object-fit: contain;
     border: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .google-input {
@@ -168,8 +169,7 @@ body {
     margin-top: 10px;
     border: none;
 }
-#changeDoodle {
-}
+
 .button-container .button {
     background-color: #ffcaca;
     font-weight: bold;
@@ -265,7 +265,8 @@ body {
 
 .doodle-upcoming,
 .doodle-newest,
-.all-doodle, .your-doodle {
+.all-doodle,
+.your-doodle, .game-doodle {
     display: inline-block;
     width: 400px;
     height: 5.5rem;
@@ -380,8 +381,12 @@ body {
     width: 90%;
     align-self: center;
     /* margin-left: auto; */
-    background: rgb(0,16,255);
-    background: linear-gradient(90deg, rgba(0,16,255,1) 0%, rgba(255,0,43,1) 100%);
+    background: rgb(0, 16, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(0, 16, 255, 1) 0%,
+        rgba(255, 0, 43, 1) 100%
+    );
     color: #ffffff;
     font-weight: bold;
     border-radius: 7px;
@@ -390,12 +395,47 @@ body {
     transition: all 0.3s ease;
     box-shadow: black 1px 2px 1px 3px;
     margin-top: 10px;
+    transition: all 0.2s ease-in-out;
 }
-#btn-random:hover{
+#btn-random:hover {
     box-shadow: black 1px 0px 1px 0px;
-
 }
-.toggle-default-change{
+#form-random-change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    gap: 10px;
+}
+#timer-random{
+    width: 50%;
+    padding: 6px;
+    border-radius: 8px;
+    outline: none;
+    border: #ccc 2px solid;
+}
+#btn-random-change {
+    cursor: pointer;
+    width: 90%;
+    align-self: center;
+    /* margin-left: auto; */
+    background: rgb(255,115,115);
+    background: linear-gradient(90deg, rgba(255,115,115,1) 0%, rgba(155,0,0,1) 100%);
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 7px;
+    padding: 6px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: black 1px 2px 1px 3px;
+    /* margin-top: 10px; */
+}
+#btn-random-change:hover {
+    box-shadow: rgb(255,115,115) 1px 0px 1px 0px;
+}
+.toggle-default-change {
     display: flex;
     gap: 15px;
     background-color: #ccc;
@@ -407,8 +447,11 @@ body {
     padding-inline: 2px;
     padding-top: 2px;
     padding-bottom: 2px;
+    margin-top: -20px;
+    cursor: pointer;
 }
-#offDefault, #onDefault{
+#offDefault,
+#onDefault {
     background-color: #2bdb66;
     border-radius: 17px;
     width: 35px;
@@ -418,10 +461,14 @@ body {
     border: none;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
 }
-#offDefault{
+#offDefault {
     background-color: #cf354a;
 }
-#onDefault{
-    display: none;
+
+.title-mode {
+    color: #db4133;
+    font-size: 18px;
+    margin-left: auto;
 }

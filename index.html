@@ -31,6 +31,7 @@
             </span>
         </div>
         <div class="body-c">
+            <h1 class="title-mode">Automatically changed on special days</h1>
             <div class="toggle-default-change">
                 <button id="offDefault">Off</button>
                 <button id="onDefault">On</button>
@@ -42,11 +43,11 @@
                         alt=""></img>
                 </div>
                 <div class="google-input">
-                    <div class="change-size">
-                        <h3 class="decrement">-</h3>
-                        <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-                        <h3 class="increment">+</h3>
-                    </div>
+                </div>
+                <div class="change-size">
+                    <h3 class="decrement">-</h3>
+                    <input type="range" min="20" max="100" value="50" class="slider" id="myRange">
+                    <h3 class="increment">+</h3>
                 </div>
             </div>
             <div class="button-container">
@@ -54,7 +55,12 @@
                 <button class="button moreBtn" id="button2">Upload Doodles</button>
             </div>
             <div class="content1">
-                <button id="btn-random">⇎ Random Doodle ⇎</button>
+                <button id="btn-random">⇎ Random pick Doodle ⇎</button>
+                <form action="" id="form-random-change">
+                    <button id="btn-random-change">Random change Doodle on time: </button>
+                    <input type="number" id="timer-random" placeholder="Hour" min="0" max="24">
+                </form>
+
                 <!-- YOUR DOODLE -->
                 <div class="upcoming-events">
                     <h2>Your Doodle</h2>
@@ -75,7 +81,16 @@
                     </div>
                     <a class="btn nextUpcome">&#10095;</a>
                 </div>
-
+                <!-- GAME -->
+                <div class="upcoming-events">
+                    <h2>Game in Doodle</h2>
+                </div>
+                <div class="box-doodle">
+                    <a class="btn prevAll">&#10094;</a>
+                    <div class="game-doodle">
+                    </div>
+                    <a class="btn nextAll">&#10095;</a>
+                </div>
                 <!-- ALL DOODLE -->
                 <div class="upcoming-events">
                     <h2>All Doodle</h2>
@@ -107,7 +122,6 @@
         </div>
         <!-- <script src="changeTab.js"></script> -->
         <script src="./popup.js"></script>
-        <script src="./size.js"></script>
 
     </div>
 </body>

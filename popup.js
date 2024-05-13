@@ -2,6 +2,7 @@ callDoodle(".doodle-upcoming", "https://google-doodle-v2-v2.vercel.app/api/v1/do
 
 callDoodle(".all-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/")
 
+callDoodle(".game-doodle", "https://google-doodle-v2-v2.vercel.app/api/v1/doodle/game")
 scrollLeftList(".prevYour", ".your-doodle")
 scrollRightList(".nextYour", ".your-doodle")
 scrollLeftList(".prevUpcome", ".doodle-upcoming")
@@ -9,8 +10,69 @@ scrollRightList(".nextUpcome", ".doodle-upcoming")
 scrollLeftList(".prevAll", ".all-doodle")
 scrollRightList(".nextAll", ".all-doodle")
 
-let nameDoodle;
+var content1 = document.querySelector('.content1');
+var content2 = document.querySelector('.content2');
+var button1 = document.getElementById('button1');
+var button2 = document.getElementById('button2');
 
+changeColor(button1);
+content2.style.display = 'none';
+button1.addEventListener("click", function () {
+  content2.style.display = 'none';
+  content1.style.display = 'block';
+  button1.classList.add('active');
+  button2.classList.remove('active');
+  changeColor(button1);
+})
+button2.addEventListener("click", function () {
+  var content1 = document.querySelector('.content1');
+  var content2 = document.querySelector('.content2');
+  content1.style.display = 'none';
+  content2.style.display = 'block';
+  button1.classList.remove('active');
+  button2.classList.add('active');
+  changeColor(button2);
+})
+console.log(11);
+let mode;
+
+chrome.storage.local.get("mode", (res) => {
+  mode = res.mode;
+  console.log("mode ex: ", res.mode);
+
+  var onBtn = document.getElementById("onDefault");
+  var offBtn = document.getElementById("offDefault");
+  var modeBtn = document.querySelector(".toggle-default-change");
+
+  // Cập nhật trạng thái nút dựa trên giá trị mode lấy được từ storage
+  if (mode == "on") {
+    onBtn.style.visibility = "visible";
+    offBtn.style.visibility = "hidden";
+  } else if (mode == "off") {
+    offBtn.style.visibility = "visible";
+    onBtn.style.visibility = "hidden";
+  }
+
+  modeBtn.addEventListener("click", function () {
+    if (mode == "off") {
+      onBtn.style.visibility = "visible";
+      offBtn.style.visibility = "hidden";
+      mode = "on";
+      console.log(mode);
+    } else {
+      onBtn.style.visibility = "hidden";
+      offBtn.style.visibility = "visible";
+      mode = "off";
+      console.log(mode);
+    }
+    // Lưu trạng thái mode mới vào storage
+    chrome.storage.local.set({
+      "mode": mode
+    });
+  });
+});
+
+let gameDoodle;
 
 let uploadBox = document.querySelector(".upload-box");
 
@@ -35,7 +97,9 @@ formUpload.addEventListener("submit", (e) => {
   chrome.storage.local.get("doodleUpload", (res) => {
     const savedDoodle = res.doodleUpload || [];
     savedDoodle.push(bufferDoodleUser);
-    chrome.storage.local.set({ "doodleUpload": savedDoodle }, () => {
+    chrome.storage.local.set({
+      "doodleUpload": savedDoodle
+    }, () => {
       console.log("Doodle đã được lưu vào localStorage:", bufferDoodleUser);
       alert("Lưu thành công!")
     });
@@ -57,7 +121,7 @@ chrome.storage.local.get("doodleUpload", (res) => {
     });
   }
 });
-
+let allDoodle;
 function selectRandomDoodle() {
   // Lấy tất cả các Doodle do người dùng tải lên từ local storage
   chrome.storage.local.get("doodleUpload", (res) => {
@@ -75,7 +139,7 @@ function selectRandomDoodle() {
     if (doodles.length > 0) {
       const randomIndex = Math.floor(Math.random() * doodles.length);
       const randomDoodle = doodles[randomIndex];
-
+      allDoodle = doodles
       // Hiển thị Doodle ngẫu nhiên trong khu vực preview
       const doodlePreview = document.querySelector(".doodle-preview img");
       doodlePreview.src = randomDoodle.src;
@@ -121,31 +185,7 @@ function changeColor(button) {
 }
 
 // Hiển thị hình ảnh trước khi tải lên
-
-var content1 = document.querySelector('.content1');
-var content2 = document.querySelector('.content2');
-var button1 = document.getElementById('button1');
-var button2 = document.getElementById('button2');
-var btnOn = document.getElementById("onDefault");
-var btnOff = document.getElementById("offDefault");
-changeColor(button1);
-content2.style.display = 'none';
-button1.addEventListener("click", function () {
-  content2.style.display = 'none';
-  content1.style.display = 'block';
-  button1.classList.add('active');
-  button2.classList.remove('active');
-  changeColor(button1);
-})
-button2.addEventListener("click", function () {
-  var content1 = document.querySelector('.content1');
-  var content2 = document.querySelector('.content2');
-  content1.style.display = 'none';
-  content2.style.display = 'block';
-  button1.classList.remove('active');
-  button2.classList.add('active');
-  changeColor(button2);
-})
+let linkGame;
 
 function callDoodle(classEle, api) {
   fetch(api)
@@ -153,16 +193,24 @@ function callDoodle(classEle, api) {
       return response.json();
     })
     .then(function (doodle) {
-
+      
       // console.log(doodle)
       doodleType = doodle;
+      console.log(doodleType);
       const doodleListEle = document.querySelector(`${classEle}`)
       const doodlePreview = document.querySelector(".doodle-preview")
 
       doodleType.forEach((item) => {
         let doodle = `<div class="doodle">
-        <img class = "ele" src="${item.image}" alt="${item.title}" loading="lazy">
+        <img class = "ele" src="${item.image}" alt="" loading="lazy" >
         </div>`
+        if (item.format == "game") {
+          linkGame = item.information;
+          doodle = `<div class="doodle">
+          <img class = "ele" src="${item.image}" alt="${linkGame}" loading="lazy" >
+          </div>`
+        }
+
         doodleListEle.innerHTML += doodle;
       })
 
@@ -183,9 +231,9 @@ function callDoodle(classEle, api) {
 
           item.classList.add("check");
           let imgDoodle = item.querySelector("img");
-          nameDoodle = imgDoodle.getAttribute("alt");
+          gameDoodle = imgDoodle.getAttribute("alt");
           linkDoodle = imgDoodle.getAttribute("src");
-          doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt=""></img>`
+          doodlePreview.innerHTML = `<img class = "ele-preview" src="${linkDoodle}" alt="${gameDoodle}"></img>`
           console.log("LINK DOODLE: " + item.innerHTML);
 
 
@@ -230,12 +278,17 @@ function callDoodle(classEle, api) {
 }
 
 
-document.getElementById('changeDoodle').addEventListener('click', function(event) {
+document.getElementById('changeDoodle').addEventListener('click', function (event) {
   event.preventDefault(); // Ngăn trình duyệt thực hiện hành động mặc định
-
   const datetime = document.getElementById('timer').value; // Lấy giá trị datetime từ input
   const link = document.querySelector(".ele-preview").src; // URL của Doodle hiện tại trong preview
   const height = document.querySelector(".ele-preview").style.width; // Chiều cao mặc định, cần điều chỉnh nếu cần
+  // let game = document.querySelector(".ele-preview").getAttribute("alt");
+
+  if (link == "") {
+    link = bufferDoodleUser
+    console.log(!link);
+  }
   if (datetime) {
     // Nếu người dùng đã chọn một thời điểm
     const scheduleTime = new Date(datetime).getTime();
@@ -245,25 +298,52 @@ document.getElementById('changeDoodle').addEventListener('click', function(event
       // Lập lịch thay đổi Doodle nếu thời gian là tương lai
       chrome.runtime.sendMessage({
         action: "setDoodleAlarm",
-        name: nameDoodle,
         link: link,
         height: height,
-        when: scheduleTime
-    });
+        when: scheduleTime,
+        type: "set",
+        game: gameDoodle
+      });
     } else {
       alert('Please select a future time.');
     }
   } else {
     // Nếu không có thời gian được chọn, thay đổi Doodle ngay lập tức
-    sendMessageToContentScript(link , height);
+    sendMessageToContentScript(link, height, "", "", gameDoodle);
+  }
+});
+
+document.getElementById('form-random-change').addEventListener('submit', function(event) {
+  event.preventDefault(); // Ngăn chặn hành động mặc định của form
+  const timeInput = document.getElementById('timer-random').value; // Lấy giá trị thời gian từ input
+
+  if (!timeInput) {
+    alert('Vui lòng nhập thời gian để thay đổi Doodle.');
+  } else {
+    const timeDelay = parseInt(timeInput) * 60000; // Chuyển đổi thời gian từ phút sang mili giây
+    const futureTime = timeDelay;
+
+    const doodleLink = document.querySelector(".ele-preview").src;
+    const doodleHeight = document.querySelector(".ele-preview").style.width;
+    let game = document.querySelector(".ele-preview").alt;
+    chrome.runtime.sendMessage({
+      action: "setDoodleAlarm",
+      link: allDoodle,
+      height: doodleHeight,
+      when: futureTime,
+      type: "random",
+      game: gameDoodle
+    });
   }
 });
 
 
-
-function sendMessageToContentScript(doodleLink, height, buffer, when) {
+function sendMessageToContentScript(doodleLink, height, buffer, when, linkGame) {
   console.log("Preparing to send message with link:", doodleLink);
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, (tabs) => {
     if (tabs.length > 0) {
       const activeTab = tabs[0];
       console.log("Sending to tab:", activeTab.id);
@@ -271,7 +351,8 @@ function sendMessageToContentScript(doodleLink, height, buffer, when) {
         link: doodleLink,
         height: height,
         buffer: buffer,
-        when: when
+        when: when,
+        game: linkGame
       }, (response) => {
         console.log("Message sent", response);
       });
@@ -280,8 +361,14 @@ function sendMessageToContentScript(doodleLink, height, buffer, when) {
     }
   });
 }
+
 function setDoodleAlarm(link, height, when) {
-  chrome.storage.local.set({link: link, height: height}, function() {
-    chrome.alarms.create('changeDoodle', {when: when});
+  chrome.storage.local.set({
+    link: link,
+    height: height
+  }, function () {
+    chrome.alarms.create('changeDoodle', {
+      when: when
+    });
   });
 }
