@@ -9,6 +9,8 @@ scrollLeftList(".prevUpcome", ".doodle-upcoming")
 scrollRightList(".nextUpcome", ".doodle-upcoming")
 scrollLeftList(".prevAll", ".all-doodle")
 scrollRightList(".nextAll", ".all-doodle")
+scrollLeftList(".prevGame", ".game-doodle")
+scrollRightList(".nextGame", ".game-doodle")
 
 var content1 = document.querySelector('.content1');
 var content2 = document.querySelector('.content2');
@@ -23,6 +25,7 @@ button1.addEventListener("click", function () {
   button1.classList.add('active');
   button2.classList.remove('active');
   changeColor(button1);
+  updateDoodleList();
 })
 button2.addEventListener("click", function () {
   var content1 = document.querySelector('.content1');
@@ -32,6 +35,7 @@ button2.addEventListener("click", function () {
   button1.classList.remove('active');
   button2.classList.add('active');
   changeColor(button2);
+
 })
 console.log(11);
 let mode;
@@ -101,26 +105,34 @@ formUpload.addEventListener("submit", (e) => {
       "doodleUpload": savedDoodle
     }, () => {
       console.log("Doodle đã được lưu vào localStorage:", bufferDoodleUser);
-      alert("Lưu thành công!")
+      alert("Lưu thành công!");
+      updateDoodleList();
     });
   });
   e.preventDefault();
 })
 
-let yourDoodleList = document.querySelector(".your-doodle")
-chrome.storage.local.get("doodleUpload", (res) => {
-  const savedDoodle = res.doodleUpload;
-  console.log(savedDoodle);
-  if (savedDoodle && Array.isArray(savedDoodle)) {
-    savedDoodle.forEach(function (item) {
-      // Tạo phần tử doodle và thêm vào yourDoodleList
-      let doodle = `<div class="doodle">
-        <img class = "ele" src="${item}" alt="" loading="lazy">
-        </div>`
-      yourDoodleList.innerHTML += doodle;
-    });
-  }
-});
+let yourDoodleList = document.querySelector(".your-doodle");
+
+function updateDoodleList() {
+  chrome.storage.local.get("doodleUpload", (res) => {
+    const savedDoodle = res.doodleUpload;
+    console.log(savedDoodle);
+    if (savedDoodle && Array.isArray(savedDoodle)) {
+      // Xóa nội dung hiện tại của yourDoodleList trước khi thêm mới
+      yourDoodleList.innerHTML = '';
+      savedDoodle.forEach(function (item) {
+        // Tạo phần tử doodle và thêm vào yourDoodleList
+        let doodle = `<div class="doodle">
+          <img class = "ele" src="${item}" alt="" loading="lazy">
+          </div>`
+        yourDoodleList.innerHTML += doodle;
+      });
+    }
+  });
+}
+
+updateDoodleList(); // Gọi hàm này ngay lập tức để hiển thị doodleUpload khi tải trang
 let allDoodle;
 function selectRandomDoodle() {
   // Lấy tất cả các Doodle do người dùng tải lên từ local storage
@@ -156,7 +168,7 @@ function scrollLeftList(classBtn, classList) {
   const prevButton = document.querySelector(`${classBtn}`);
   prevButton.addEventListener('click', function () {
     const doodleContainer = document.querySelector(`${classList}`);
-    const scrollStep = 100;
+    const scrollStep = 200;
     doodleContainer.scrollLeft -= scrollStep;
     console.log(1111111111111111111111111111111111);
   });
@@ -166,7 +178,7 @@ function scrollRightList(classBtn, classList) {
   const nextButton = document.querySelector(`${classBtn}`);
   nextButton.addEventListener('click', function () {
     const doodleContainer = document.querySelector(`${classList}`);
-    const scrollStep = 100;
+    const scrollStep = 200;
     doodleContainer.scrollLeft += scrollStep;
   });
 }

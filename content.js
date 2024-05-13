@@ -7,7 +7,7 @@ let href;
 let buffer;
 let logoMain = document.querySelector('.rSk4se');
 let logoMain2 = document.querySelector(".k1zIA ");
-let logoExtra = document.querySelector(".logo #logo");
+let logoExtra = document.getElementById("logo");
 
 function CheckAndSetInStorage(type, logo) {
     console.log("Content get");
@@ -74,4 +74,4 @@ widthSearch = 92;
 let dataSearch;
 
 
-CheckAndSetInStorage(1, logoSearch);
+CheckAndSetInStorage(1, logoExtra);

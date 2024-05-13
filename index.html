@@ -31,10 +31,12 @@
             </span>
         </div>
         <div class="body-c">
-            <h1 class="title-mode">Automatically changed on special days</h1>
-            <div class="toggle-default-change">
-                <button id="offDefault">Off</button>
-                <button id="onDefault">On</button>
+            <div class="on-off-mode">
+                <h1 class="title-mode">Automatically changed on special days: </h1>
+                <div class="toggle-default-change">
+                    <button id="offDefault">Off</button>
+                    <button id="onDefault">On</button>
+                </div>
             </div>
             <div class="preview">
                 <div class="doodle-preview">
@@ -42,8 +44,17 @@
                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"
                         alt=""></img>
                 </div>
-                <div class="google-input">
+                <div class="fake-search-bar">
+                    <div class="search-input-container">
+                        <input type="text" placeholder="Search Google or type URL">
+                    </div>
                 </div>
+                <div class="fake-button-container">
+                    <button class="search-button">Google Search</button>
+                    <button class="lucky-button">I'm Feeling Lucky</button>
+                </div>
+            </div>
+            <div class="google-input">
                 <div class="change-size">
                     <h3 class="decrement">-</h3>
                     <input type="range" min="20" max="100" value="50" class="slider" id="myRange">
@@ -86,10 +97,10 @@
                     <h2>Game in Doodle</h2>
                 </div>
                 <div class="box-doodle">
-                    <a class="btn prevAll">&#10094;</a>
+                    <a class="btn prevGame">&#10094;</a>
                     <div class="game-doodle">
                     </div>
-                    <a class="btn nextAll">&#10095;</a>
+                    <a class="btn nextGame">&#10095;</a>
                 </div>
                 <!-- ALL DOODLE -->
                 <div class="upcoming-events">
@@ -112,6 +123,11 @@
             <div class="content2">
                 <div class="upload-box">
                     <h1>Upload your Doodle</h1>
+                </div>
+                <div class="upload-box">
+                    <a href="https://viet-doodle-gallery.vercel.app/" target="_blank">
+                        <h1>More from the Store</h1>
+                    </a>
                 </div>
                 <form action="" id="form-upload">
                     <input id="doodle-input" type="file">

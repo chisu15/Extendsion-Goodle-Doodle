@@ -1,4 +1,12 @@
 chrome.runtime.onInstalled.addListener(() => {
+    let defaultData = `<a href="https://viet-doodle-gallery.vercel.app/" target="_blank">
+    <img class="lnXdpd" alt="Google" src="https://viet-doodle-gallery.vercel.app/static/media/vietdoodle.9c23c6615c8fdf3751f4.png" height="200 px" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">
+    </a>`;
+    let dataExtra = `<a href="https://viet-doodle-gallery.vercel.app/" target="_blank"><img class="jfN4p" src="https://viet-doodle-gallery.vercel.app/static/media/vietdoodle.9c23c6615c8fdf3751f4.png" style="background:none" alt="Google" height="30px" width="92px" data-csiid="1" data-atf="1" object-fit="contain"></a>`;
+    chrome.storage.local.set({
+        doodleMain: defaultData,
+        doodleExtra: dataExtra
+    });
     console.log('VietDoodle Gallery extension đã được cài đặt.');
     chrome.storage.local.get("mode", (result) => {
         let currentMode = result.mode ? result.mode : "on";
