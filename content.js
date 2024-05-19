@@ -6,6 +6,9 @@ let widthSearch;
 let href;
 let buffer;
 let logoMain = document.querySelector('.rSk4se');
+logoMain.style.display = "flex"
+logoMain.style.alignItems = "end"
+logoMain.style.marginBottom = "18 px"
 let logoMain2 = document.querySelector(".k1zIA ");
 let logoExtra = document.getElementById("logo");
 
@@ -39,7 +42,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         let defaultData = `<img class="lnXdpd" alt="Google" src="${doodleLink}" height="${heightMain}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto">`;
         let dataExtra = `<img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="30px" width="92px" data-csiid="1" data-atf="1" object-fit="cover">`;
         if (request.game) {
-            defaultData = `<a href="${request.game}" target="_blank"><img class="lnXdpd" alt="Google" src="${doodleLink}" height="${heightMain}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto"></a>`;
+            defaultData = `<iframe src="${request.game}" object_fit="cover"><img class="lnXdpd" alt="Google" src="${doodleLink}" height="${heightMain}" width="auto" data-atf="1" data-frt="0" object-fit="contain" margin-top="auto"></a>`;
             dataExtra = `<a href="${request.game}" target="_blank"><img class="jfN4p" src="${doodleLink}" style="background:none" alt="Google" height="30px" width="92px" data-csiid="1" data-atf="1" object-fit="cover"></a>`;
         }
 

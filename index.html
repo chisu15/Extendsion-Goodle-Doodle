@@ -17,25 +17,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Niramit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+
     <div class="container">
         <div class="head">
-            <div class="logo-title">
-                <img src="./img/logo.png" alt="" class="logo">
-                <h1>VIETDOODLE GALLERY</h1>
+            <a href="https://viet-doodle-gallery.vercel.app/" class="logo-title">
+                <img src="./img/vietdoodle.png" alt="" class="logo">
+            </a>
+            <h1 class="user-name">Name</h1>
+        </div>
+        <span class="setting" id="setting">
+            <i class="fa-solid fa-gear"></i>
+        </span>
+        <div class="hidden-menu">
+            <div class="hidden-menu__dangNhap">Đăng nhập</div>
+            <form action="" class="login-form">
+                <input type="email" class="hidden-menu__input" placeholder="Email">
+                <input type="password" class="hidden-menu__input" placeholder="Password">
+                <button class="hidden-menu__button">Đăng nhập</button>
+            </form>
+            <div class="hidden-menu__onOffExtension">
+                <div class="hidden-menu__onOffExtension__icon"><i class="fa-solid fa-power-off"></i></div>
+                <div class="hidden-menu__onOffExtension__text">vietdoodle Gallery extension</div>
+                <div class="hidden-menu__onOffExtension__toggle-default-change">
+                    <span class="hidden-menu__onOffExtension__label hidden-menu__onOffExtension__on-label">ON</span>
+                    <span class="hidden-menu__onOffExtension__label hidden-menu__onOffExtension__off-label">OFF</span>
+                    <div id="hidden-menu__onOffExtension__toggleButton"></div>
+                </div>
             </div>
-            <span class="material-symbols-outlined" id="hide-btn">
-                arrow_forward
-            </span>
+            <div class="hidden-menu__line"></div>
         </div>
         <div class="body-c">
             <div class="on-off-mode">
                 <h1 class="title-mode">Automatically changed on special days: </h1>
                 <div class="toggle-default-change">
-                    <button id="offDefault">Off</button>
-                    <button id="onDefault">On</button>
+                    <span class="label on-label">ON</span>
+                    <span class="label off-label">OFF</span>
+                    <div id="toggleButton"></div>
                 </div>
             </div>
             <div class="preview">
@@ -71,7 +92,9 @@
                     <button id="btn-random-change">Random change Doodle on time: </button>
                     <input type="number" id="timer-random" placeholder="Hour" min="0" max="24">
                 </form>
-
+                <form action="" id="form-change">
+                    <button id="changeDoodle">Save</button>
+                </form>
                 <!-- YOUR DOODLE -->
                 <div class="upcoming-events">
                     <h2>Your Doodle</h2>
@@ -81,6 +104,16 @@
                     <div class="your-doodle">
                     </div>
                     <a class="btn nextYour">&#10095;</a>
+                </div>
+                <!-- FAVORITE DOODLE -->
+                <div class="upcoming-events">
+                    <h2>Favorite Doodle</h2>
+                </div>
+                <div class="box-doodle">
+                    <a class="btn prevFav">&#10094;</a>
+                    <div class="favorite-doodle">
+                    </div>
+                    <a class="btn nextFav">&#10095;</a>
                 </div>
                 <!-- UPCOMING DOODLE -->
                 <div class="upcoming-events">
@@ -112,13 +145,7 @@
                     </div>
                     <a class="btn nextAll">&#10095;</a>
                 </div>
-                <form action="" id="form-change">
-                    <div>
-                        <label for="timer">Set Date:</label>
-                        <input type="datetime-local" id="timer" min="2021-01-01T00:00" max="2099-12-31T23:59">
-                    </div>
-                    <button id="changeDoodle">Change Doodle</button>
-                </form>
+
             </div>
             <div class="content2">
                 <div class="upload-box">
@@ -138,6 +165,7 @@
         </div>
         <!-- <script src="changeTab.js"></script> -->
         <script src="./popup.js"></script>
+        <script src="ui.js"></script>
 
     </div>
 </body>

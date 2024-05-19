@@ -38,40 +38,205 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: #db4133 solid 3px;
+    font-size: 8px;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
-.material-symbols-outlined {
-    overflow-y: hidden;
+.setting {
     cursor: pointer;
+    font-size: 25px;
+    color: #db4133;
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 25px;
+    top: 25px;
 }
-
+.setting:hover{
+    transform: rotate(360deg); /* Xoay 1 vòng */
+}
 .logo-title {
     display: flex;
     align-items: center;
-    width: fit-content;
-    gap: 1.5rem;
     color: #db4133;
+    
 }
 
 .logo {
-    width: 10%;
+    height: 40px;
+    width: auto;
+}
+
+.user-name{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #db4133;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.login-form{
+    width: 100%;
     height: auto;
-    border-radius: 50%;
-    border: none;
-    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-#hide-btn {
-    width: fit-content;
-    height: fit-content;
+.hidden-menu{
+    height: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease-in;
+    width: 100%;
+    margin-top: -30px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+.hidden-menu__dangNhap{
     font-size: 30px;
-    overflow-y: hidden;
+    color: #db4133;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.hidden-menu form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.hidden-menu__input{
+    display: flex;
+    width: 90%;
+    border-radius: 100px;
+    margin-bottom: 15px;
+    text-align: start;
+    padding: 10px;
+    background-color: #E8F0FE;
+    border: 2px solid #db4133;
+    font-size: 16px;
+    overflow: hidden;
+}
+.hidden-menu__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 94%;
+    border-radius: 100px;
+    margin-bottom: 15px;
+    padding: 5px;
+    background-color: #db4133;
+    border: 2px solid #db4133;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    overflow: hidden;
+}
+.hidden-menu__button:hover{
+    background-color: white;
+    color: #db4133;
+    opacity: 1;
+}
+.hidden-menu__onOffExtension{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    border-radius: 100px;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 2px solid #db4133;
+    color: #db4133;
+    transition: all 0.2s ease-in;
+    font-size: 16px;
+    margin-top: 40px;
+    overflow: hidden;
+}
+.hidden-menu__onOffExtension__icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.hidden-menu__onOffExtension__toggle-default-change {
+    position: relative;
+    width: 70px;
+    height: 30px;
+    background-color: #F0F6FF;
+    border-radius: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    overflow: hidden;
+}
+
+.hidden-menu__onOffExtension__label {
+    position: absolute;
+    width: 30px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    z-index: 1; /* Đảm bảo các nhãn luôn hiển thị trên cùng */
+}
+
+.hidden-menu__onOffExtension__on-label {
+    left: 5px;
+    transition: opacity 0.3s ease;
+    color: #2bdb66;
+}
+
+.hidden-menu__onOffExtension__off-label {
+    right: 5px;
+    transition: opacity 0.3s ease;
+    color: #DB4133;
+}
+
+#hidden-menu__onOffExtension__toggleButton {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background-color: #2bdb66;
+    border-radius: 50%;
+    transition: left 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Màu chữ trắng */
+}
+
+.hidden-menu:hover{
+    height: 400px;
+    opacity: 1;
+}
+.hidden-menu__line{
+    width: 100%;
+    height: 3px;
+    background-color: #DB4133;
+    margin-top: 20px;
+}
+.setting:hover + .hidden-menu{
+    height: 400px;
+    opacity: 1;
+}
 .body-c {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    margin-top: -20px;
 }
 
 .preview {
@@ -80,7 +245,7 @@ body {
     justify-content: center;
     align-content: center;
     width: 80%; /* Adjusted from a smaller percentage or fixed width */
-    height: 200px;
+    height: 180px;
     margin: auto;
     padding: 20px; /* Provides space around the contents */
     border: 1px solid #ccc; /* Optional: adds a border for visual structure */
@@ -92,7 +257,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
 }
 .ele-preview {
     max-width: 100%;
@@ -283,6 +447,7 @@ body {
 }
 
 .doodle-upcoming,
+.favorite-doodle,
 .doodle-newest,
 .all-doodle,
 .your-doodle, .game-doodle {
@@ -296,6 +461,16 @@ body {
     position: relative;
     white-space: nowrap;
     transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+.empty {
+    /* justify-self: auto; */
+
+    text-align: center;
+    color: #ff6060;
+    font-size: 1.4rem;
+    width: 100%;
+    height: auto;
+    white-space: normal; /* Cho phép nội dung xuống dòng */
 }
 .ele {
     display: flex;
@@ -403,17 +578,42 @@ body {
     width: 100%;
     height: 100%;
 }
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes text-wobble {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    50% {
+        transform: translateX(2px);
+    }
+    75% {
+        transform: translateX(-2px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 #btn-random {
     cursor: pointer;
     width: 90%;
     align-self: center;
-    /* margin-left: auto; */
-    background: rgb(0, 16, 255);
-    background: linear-gradient(
-        90deg,
-        rgba(0, 16, 255, 1) 0%,
-        rgba(255, 0, 43, 1) 100%
-    );
+    background: linear-gradient(90deg, rgba(0, 16, 255, 1) 0%, rgba(255, 0, 43, 1) 100%);
+    background-size: 200% 200%;
     color: #ffffff;
     font-weight: bold;
     border-radius: 7px;
@@ -422,34 +622,46 @@ body {
     transition: all 0.3s ease;
     box-shadow: black 1px 2px 1px 3px;
     margin-top: 10px;
-    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
+
 #btn-random:hover {
     box-shadow: black 1px 0px 1px 0px;
+    animation: gradient-animation 1.5s infinite linear;
 }
+
+#btn-random:hover span {
+    display: inline-block;
+    animation: text-wobble 0.5s infinite;
+}
+
 #form-random-change {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
     border-radius: 8px;
     transition: background-color 0.3s ease;
-    gap: 10px;
+    margin-top: 10px;
+    padding: 5px 23px;
+    align-items: center;
+    justify-content: space-between;
 }
-#timer-random{
-    width: 50%;
+
+#timer-random {
+    width: 0%;
     padding: 6px;
     border-radius: 8px;
     outline: none;
     border: #ccc 2px solid;
+    display: none;
+    transition: all 0.3s ease;
 }
+
 #btn-random-change {
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     align-self: center;
-    /* margin-left: auto; */
-    background: rgb(255,115,115);
-    background: linear-gradient(90deg, rgba(255,115,115,1) 0%, rgba(155,0,0,1) 100%);
+    background: linear-gradient(90deg, rgba(255, 115, 115, 1) 0%, rgba(155, 0, 0, 1) 100%);
+    background-size: 200% 200%;
     color: #ffffff;
     font-weight: bold;
     border-radius: 7px;
@@ -457,11 +669,35 @@ body {
     border: none;
     transition: all 0.3s ease;
     box-shadow: black 1px 2px 1px 3px;
-    /* margin-top: 10px; */
+    position: relative;
+    overflow: hidden;
 }
-#btn-random-change:hover {
-    box-shadow: rgb(255,115,115) 1px 0px 1px 0px;
+
+#form-random-change:hover > #btn-random-change {
+    box-shadow: rgb(255, 115, 115) 1px 0px 1px 0px;
+    width: 60%;
+    animation: gradient-animation 1.5s infinite linear;
 }
+
+#form-random-change:hover > #btn-random-change span {
+    display: inline-block;
+    animation: text-wobble 0.5s infinite;
+}
+
+#form-random-change:hover > #timer-random {
+    display: flex;
+    width: 35%;
+}
+.button-off {
+    background: grey !important;
+    box-shadow: none !important;
+    color: #ccc !important;
+}
+
+.button-off span {
+    animation: none !important;
+}
+
 .on-off-mode {
     display: flex;
     align-items: center;
@@ -469,41 +705,60 @@ body {
     gap: 10px;
 }   
 .toggle-default-change {
-    display: flex;
-    gap: 15px;
-    background-color: #ccc;
+    position: relative;
     width: 70px;
-    height: fit-content;
-    justify-content: space-between;
-    margin-left: auto;
-    border-radius: 17px;
-    padding-inline: 2px;
-    /* margin-top: -20px; */
-    cursor: pointer;
-}
-#offDefault,
-#onDefault {
-    background-color: #2bdb66;
-    border-radius: 17px;
-    width: 30px;
     height: 30px;
-    overflow: hidden;
-    text-align: center;
-    border: none;
-    color: #fff;
-    font-weight: bold;
+    background-color: #F0F6FF;
+    border-radius: 17px;
     cursor: pointer;
-    font-size: 11px;
-    text-align: center;
-}
-#offDefault {
-    background-color: #cf354a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    overflow: hidden;
 }
 
+.label {
+    position: absolute;
+    width: 30px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    z-index: 1; /* Đảm bảo các nhãn luôn hiển thị trên cùng */
+}
+
+.on-label {
+    left: 5px;
+    transition: opacity 0.3s ease;
+    color: #2bdb66;
+}
+
+.off-label {
+    right: 5px;
+    transition: opacity 0.3s ease;
+    color: #DB4133;
+}
+
+#toggleButton {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background-color: #2bdb66;
+    border-radius: 50%;
+    transition: left 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Màu chữ trắng */
+}
 .title-mode {
-    color: #404040;
+    color: #DB4133;
     font-size: 18px;
     margin-left: auto;
+    font-weight: 400;
 }
 .fake-search-bar {
     width: 80%;
